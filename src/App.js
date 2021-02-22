@@ -9,7 +9,6 @@ import {Map} from './Map';
 import './App.css';
 import {theme} from 'loft-taxi-mui-theme';
 
-
 export class App extends React.Component {
 
   state = { page: "login" }
