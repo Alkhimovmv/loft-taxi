@@ -1,11 +1,22 @@
 import React from 'react'
 
-export const Signup = () => {
+export const Signup = (props) => {
+    const { setPage } = props;
+    const map = (e) => {
+        e.preventDefault();
+
+        setPage('map');
+    }
+    const login = (e) => {
+        e.preventDefault();
+
+        setPage('login');
+    }
     return (
         <form>
             <div>Регистрация</div>
             <div>Уже зарегистрированы?</div>
-            <button onClick={() => {this.currentPage("login")}}>Войти</button>
+            <button onClick={login}>Войти</button>
 
             <label htmlFor="email"></label>
             <input id="email" type="email" name="email" size="28" placeholder="Адрес электронной почты*"/>
@@ -15,7 +26,7 @@ export const Signup = () => {
             <input id="surname" type="surname" name="surname" size="28" placeholder="Фамилия*"/>
             <label htmlFor="password"></label>
             <input id="password" type="password" name="password" size="28" placeholder="Пароль*"/>
-            <button onClick={() => {this.currentPage("map")}}>Войти</button>
+            <button onClick={map}>Войти</button>
         </form>
     )
 }
