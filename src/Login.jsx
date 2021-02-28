@@ -8,6 +8,11 @@ export class Login extends Component {
     this.props.navigate("profile");
   };
 
+  goToSignUp = (e) => {
+    e.preventDefault();
+    this.props.navigate("signup");
+  };
+
   authenticate = (e) => {
     e.preventDefault();
     const { email, password } = e.target;
@@ -25,16 +30,20 @@ export class Login extends Component {
             </button>
           </p>
         ) : (
-          <form onSubmit={this.authenticate}>
-            <div>Войти</div>
-            <div>Новый пользователь?</div>
-            <button>Зарегистрируйтесь</button>
-            <label htmlFor="email" for="email">Email:</label>
-            <input id="email" type="email" name="email" size="28" />
-            <label htmlFor="password" for="password">Password:</label>
-            <input id="password" type="password" name="password" size="28" />
-            <button type="submit">Войти</button>
-          </form>
+          <div>
+            <form>
+              <div>Войти</div>
+              <div>Новый пользователь?</div>
+              <button onClick={this.goToSignUp} >Зарегистрируйтесь</button>
+            </form>
+            <form onSubmit={this.authenticate}>
+              <label className="label_hidden" htmlFor="email">Email:</label>
+              <input id="email" type="email" name="email" size="28" />
+              <label className="label_hidden" htmlFor="password">Password:</label>
+              <input id="password" type="password" name="password" size="28" />
+              <button type="submit">Войти</button>
+            </form>
+          </div>
         )}
       </>
     );

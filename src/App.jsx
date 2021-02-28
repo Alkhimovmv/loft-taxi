@@ -4,12 +4,12 @@ import {Header} from './shared/Header';
 import { ProfileWithAuth } from "./Profile";
 import { LoginWithAuth } from "./Login";
 import { Map } from "./Map";
+import { Signup } from "./Signup";
 import { withAuth } from "./AuthContext";
 import PropTypes from 'prop-types';
 import "./App.css";
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { theme } from 'loft-taxi-mui-theme';
-import { Signup } from "./Signup";
 
 
 
@@ -24,10 +24,8 @@ class App extends React.Component {
   state = { currentPage: "login" };
 
   navigateTo = (page) => {
-    if (this.props.isLoggedIn) {
+    if (this.props.isLoggedIn || page === 'login' || page === 'signup') {
       this.setState({ currentPage: page });
-    } else {
-      this.setState({ currentPage: "login" });
     }
   };
 

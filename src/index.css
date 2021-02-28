@@ -462,6 +462,6 @@ blockquote footer {
   bottom: 0;
 }
 
-label[for="email"], label[for="password"] {
+.label_hidden {
   visibility: hidden;
 }

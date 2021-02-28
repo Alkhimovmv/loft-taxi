@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@babel/plugin-syntax-jsx": "^7.12.13",
     "@material-ui/core": "^4.11.3",
     "@material-ui/styles": "^4.11.3",
     "@testing-library/jest-dom": "^5.11.9",
@@ -50,13 +49,9 @@
     }
   },
   "devDependencies": {
-    "@babel/plugin-transform-react-jsx": "^7.12.17",
-    "@babel/preset-react": "^7.12.13",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/react-hooks": "^5.0.3",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
     "cz-customizable": "^6.3.0",
     "jest": "^26.6.0",
     "loft-taxi-mui-theme": "^1.2.0",
