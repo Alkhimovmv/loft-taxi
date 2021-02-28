@@ -1,28 +1,50 @@
-import React from 'react'
+import React, { Component } from "react";
+import {PropTypes} from 'prop-types'
+import { withAuth } from "./AuthContext";
 
-export const Login = (props) => {
-    const { setPage } = props;
-    const map = (e) => {
-        e.preventDefault();
+export class Login extends Component {
+  goToProfile = (e) => {
+    e.preventDefault();
+    this.props.navigate("profile");
+  };
 
-        setPage('map');
-    }
-    const signup = (e) => {
-        e.preventDefault();
+  authenticate = (e) => {
+    e.preventDefault();
+    const { email, password } = e.target;
+    this.props.logIn(email.value, password.value);
+  };
 
-        setPage('signup');
-    }
+  render() {
     return (
-        <form>
+      <>
+        {this.props.isLoggedIn ? (
+          <p>
+            Вы вошли в систему {" "}
+            <button onClick={this.goToProfile}>
+              Войти в профиль
+            </button>
+          </p>
+        ) : (
+          <form onSubmit={this.authenticate}>
             <div>Войти</div>
             <div>Новый пользователь?</div>
-            <button onClick={signup}>Зарегистрируйтесь</button>
-
-            <label htmlFor="email"></label>
-            <input id="email" type="email" name="email" size="28" placeholder="Имя пользователя"/>
-            <label htmlFor="password"></label>
-            <input id="password" type="password" name="password" size="28" placeholder="Пароль"/>
-            <button onClick={map}>Войти</button>
-        </form>
-    )
+            <button>Зарегистрируйтесь</button>
+            <label htmlFor="email" for="email">Email:</label>
+            <input id="email" type="email" name="email" size="28" />
+            <label htmlFor="password" for="password">Password:</label>
+            <input id="password" type="password" name="password" size="28" />
+            <button type="submit">Войти</button>
+          </form>
+        )}
+      </>
+    );
+  }
 }
+
+Login.propTypes = {
+  isLoggedIn: PropTypes.bool,
+  logIn: PropTypes.func,
+  navigate: PropTypes.func,
+};
+
+export const LoginWithAuth = withAuth(Login);

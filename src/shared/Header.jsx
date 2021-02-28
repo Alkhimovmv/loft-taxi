@@ -17,19 +17,19 @@ const useStyles = makeStyles(theme => ({
 
 export const Header = props => {
     const classes = useStyles();
-    const { setPage } = props;
+    const { navigateTo } = props;
 
     return (
         <AppBar position="static">
             <Toolbar>
-                <Typography variant="h6" className={classes.title}>Loft Taxi</Typography>
-                <Button classes={{ root: classes.root }} onClick={() => setPage("map")} color="inherit">
+                <Typography variant="h5" className={classes.title}>Loft Taxi</Typography>
+                <Button classes={{ root: classes.root }} onClick={() => navigateTo("map")} color="inherit">
                     Карта
                 </Button>
-                <Button onClick={() => setPage("profile")} color="inherit">
+                <Button onClick={() => navigateTo("profile")} color="inherit">
                     Профиль
                 </Button>
-                <Button onClick={() => setPage("login")} color="inherit">
+                <Button onClick={() => navigateTo("login")} color="inherit">
                     Войти
                 </Button>
             </Toolbar>
