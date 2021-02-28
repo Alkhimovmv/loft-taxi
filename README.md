@@ -4,4 +4,4 @@
   * `login(email, password)`
   * `logout()`
   * `isLoggedIn`
-* [ ] Написание тестов
+* [x] Написание тестов
