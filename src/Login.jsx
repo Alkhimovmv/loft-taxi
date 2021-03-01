@@ -8,11 +8,6 @@ export class Login extends Component {
     this.props.navigate("profile");
   };
 
-  goToSignUp = (e) => {
-    e.preventDefault();
-    this.props.navigate("signup");
-  };
-
   authenticate = (e) => {
     e.preventDefault();
     const { email, password } = e.target;
@@ -34,7 +29,7 @@ export class Login extends Component {
             <form>
               <div>Войти</div>
               <div>Новый пользователь?</div>
-              <button onClick={this.goToSignUp} >Зарегистрируйтесь</button>
+              <button type="button" onClick={() => this.props.navigate("signup")} >Зарегистрируйтесь</button>
             </form>
             <form onSubmit={this.authenticate}>
               <label className="label_hidden" htmlFor="email">Email:</label>

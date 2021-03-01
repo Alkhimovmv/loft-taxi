@@ -8,7 +8,7 @@ export class Signup extends Component {
                 <form>
                     <div>Регистрация</div>
                     <div>Уже зарегистрированы?</div>
-                    <button onClick={() => this.navigateTo("login")}>Войти</button>
+                    <button type="button" onClick={() => this.props.navigate("login")}>Войти</button>
         
                     <label className="label_hidden" htmlFor="email">Email:</label>
                     <input id="email" type="email" name="email" size="28" placeholder="Адрес электронной почты*"/>
