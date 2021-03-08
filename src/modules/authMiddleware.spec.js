@@ -1,8 +1,8 @@
 import { authMiddleware } from './authMiddleware';
-import { authenticate } from './actions';
-import { serverLogin } from './api';
+import { authenticate } from '../actions';
+import { serverLogin } from '../api';
 
-jest.mock("./api", () => ({ serverLogin: jest.fn(() => true) }));
+jest.mock("../api", () => ({ serverLogin: jest.fn(() => true) }));
 
 describe("authMiddleware", () => {
     describe("#AUTHENTICATE", () => {

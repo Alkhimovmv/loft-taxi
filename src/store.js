@@ -1,5 +1,12 @@
-import { createStore, applyMiddleware } from "redux";
+import { createStore, compose, applyMiddleware } from "redux";
 import rootReducer from "./reducers";
-import { authMiddleware } from './authMiddleware'
+import { authMiddleware } from './modules/authMiddleware';
+import { cardMiddleware } from './modules/cardMiddleware';
 
-export const store = createStore(rootReducer, applyMiddleware(authMiddleware))
+export const store = createStore(
+    rootReducer, 
+    compose(
+        applyMiddleware(cardMiddleware),
+        applyMiddleware(authMiddleware)
+    ),
+);

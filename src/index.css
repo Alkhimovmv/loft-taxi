@@ -142,7 +142,7 @@ nav ul {
 
 nav ul li {
   display: inline-block;
-  margin: 0 0.5rem;
+  margin-right: 30px;
   position: relative;
   text-align: left;
 }
@@ -245,12 +245,12 @@ sup {
 }
 
 /* Links */
-a {
+/* a {
   color: var(--color-secondary);
   display: inline-block;
   font-weight: bold;
   text-decoration: none;
-}
+} */
 
 a:hover {
   filter: brightness(var(--hover-brightness));
@@ -464,4 +464,45 @@ blockquote footer {
 
 .label_hidden {
   visibility: hidden;
+}
+
+
+
+
+
+.logo{
+  display: block;
+  margin-right: 100px;
+  margin-left: 27px;
+}
+
+.menu__item--active .menu__link{
+  color: #dfb56d;
+}
+
+.menu__link{
+  font-size: 14px;
+  text-decoration: none;
+  color: var(--color-bg);
+}
+
+.menu__link:hover{
+  color: #dfb56d;
+  transition: .3s;
+}
+
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1C1A19;
+}
+
+.header__col{
+  display: flex;
+  align-items: center;
+}
+
+.header__col--align--right{
+  justify-content: flex-end;
 }

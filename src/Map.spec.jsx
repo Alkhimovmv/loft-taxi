@@ -3,8 +3,18 @@ import { Map } from "./Map";
 import { render } from "@testing-library/react";
 import mapbox from "mapbox-gl";
 
-jest.mock("mapbox-gl", () => ({
-  Map: jest.fn(() => ({ remove: () => {} })),
+// jest.mock("mapbox-gl", () => ({
+//   Map: jest.fn(() => ({ remove: () => {} })),
+// }));
+
+jest.mock('mapbox-gl/dist/mapbox-gl', () => ({
+  GeolocateControl: jest.fn(),
+  Map: jest.fn(() => ({
+    addControl: jest.fn(),
+    on: jest.fn(),
+    remove: jest.fn()
+  })),
+  NavigationControl: jest.fn()
 }));
 
 describe("Map", () => {

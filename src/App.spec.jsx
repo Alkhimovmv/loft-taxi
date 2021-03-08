@@ -3,7 +3,7 @@ import { render, fireEvent } from "@testing-library/react";
 import App from "./App";
 import { createMemoryHistory } from "history";
 import { Provider } from 'react-redux';
-import { Router } from 'react-router-dom';
+import { MemoryRouter, Router } from 'react-router-dom';
 
 jest.mock("./Login", () => ({ LoginWithAuth: () => <div>Login content</div> }));
 jest.mock("./Map", () => ({ Map: () => <div>Map content</div> }));
@@ -19,23 +19,23 @@ describe("App", () => {
 
     const history = createMemoryHistory();
     const { container } = render(
-      <Router history={history}>
-        <Provider store={mockStore}>
-          <App />
-        </Provider>
-      </Router>
+        <Router history={history}>
+          <Provider store={mockStore}>
+            <App />
+          </Provider>
+        </Router>
     );
     expect(container.innerHTML).toMatch("Login content");
   });
 
   describe("when clicked on navigation buttons", () => {
-    it("opens the corresponding page", () => {
-      const mockStore = {
-        getState: () => ({ auth: { isLoggedIn: true } }),
-        subscribe: () => {},
-        dispatch: ()=> {},
-      };
-  
+    const mockStore = {
+      getState: () => ({ auth: { isLoggedIn: true } }),
+      subscribe: () => {},
+      dispatch: ()=> {},
+    };
+
+    it("open login page", () => {
       const history = createMemoryHistory();
       const { container, getByText } = render(
         <Router history={history}>
@@ -45,8 +45,30 @@ describe("App", () => {
         </Router>
       );
       expect(container.innerHTML).toMatch("Login content");
+    });
+
+    it("open map page", () => {
+      const history = createMemoryHistory();
+      const { container, getByText } = render(
+        <Router history={history}>
+          <Provider store={mockStore}>
+            <App />
+          </Provider>
+        </Router>
+      );
       fireEvent.click(getByText('Карта'));
       expect(container.innerHTML).toMatch("Map content");
+    });
+
+    it("open profile page", () => {
+      const history = createMemoryHistory();
+      const { container, getByText } = render(
+        <Router history={history}>
+          <Provider store={mockStore}>
+            <App />
+          </Provider>
+        </Router>
+        );
       fireEvent.click(getByText('Профиль'));
       expect(container.innerHTML).toMatch("Profile content");
     });

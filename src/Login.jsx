@@ -3,6 +3,7 @@ import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { authenticate } from './actions';
 import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 export class Login extends Component {
   authenticate = (e) => {
@@ -21,19 +22,19 @@ export class Login extends Component {
           </p>
         ) : (
           <div>
-            <form>
-              <div>Войти</div>
-              <div>Новый пользователь?</div>
-              <Link to="/signup" >Зарегистрируйтесь</Link>
-            </form>
             <form onSubmit={this.authenticate}>
-              <label className="label_hidden" htmlFor="email">Email:</label>
+              <div>Войти</div>
+              <label className="label_hidden" htmlFor="email">Email</label>
               <input id="email" type="email" name="email" size="28" />
-              <label className="label_hidden" htmlFor="password">Password:</label>
+              <label className="label_hidden" htmlFor="password">Пароль</label>
               <input id="password" type="password" name="password" size="28" />
-              <button type="submit">Войти</button>
+              <div>Забыли пароль?</div>
+              <Button type="submit" variant="contained" color="primary">Войти</Button>
+              <div>Новый пользователь?</div>
+              <Link to="/signup">Регистрация</Link>
             </form>
           </div>
+          
         )}
       </>
     );
