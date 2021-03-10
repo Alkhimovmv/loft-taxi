@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, TextField, Card } from '@material-ui/core';
+import { Button, TextField, Card, InputLabel, Input } from '@material-ui/core';
 
 const ProfileCard = (props) => {
 
@@ -16,39 +16,41 @@ const ProfileCard = (props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <Card>
-          <TextField
-            type="text"
-            name="surname"
-            placeholder="name surname"
-            required
-            label={<span>Имя владельца</span>}
-          />
-        </Card>
-        <Card>
-          <TextField
+      <div >
+        <Card >
+          <InputLabel htmlFor="number">Номер карты *</InputLabel>
+          <Input
+            id="number"
             type="text"
             name="card"
-            placeholder="0000000000000000"
+            placeholder="0000 0000 0000 0000"
             required
-            label={<span>Номер карты</span>}
+          />
+          <InputLabel htmlFor="date">Срок действия *</InputLabel>
+          <Input
+            id="date"
+            type="text"
+            name="date"
+            placeholder="MM/YY"
+            required
           />
         </Card>
         <Card>
-          <TextField
+          <InputLabel htmlFor="surname">Имя владельца *</InputLabel>
+          <Input
+            id="surname"
             type="text"
-            name="date"
-            placeholder="mm/yy"
+            name="surname"
+            placeholder="USER NAME"
             required
-            label={<span>MM/YY</span>}
           />
-          <TextField
+          <InputLabel htmlFor="cvc">CVC *</InputLabel>
+          <Input
+            id="cvc"
             type="text"
             name="cvc"
-            placeholder="cvc"
+            placeholder="CVC"
             required
-            label={<span>CVC</span>}
           />
         </Card>
       </div>

@@ -11,8 +11,8 @@ describe("Login", () => {
           <Login />
         </BrowserRouter>
       );
-      expect(getByLabelText("Email")).toHaveAttribute("name", "email");
-      expect(getByLabelText("Пароль")).toHaveAttribute("name", "password");
+      expect(getByLabelText("Имя пользователя *")).toHaveAttribute("name", "email");
+      expect(getByLabelText("Пароль *")).toHaveAttribute("name", "password");
     });
 
   })

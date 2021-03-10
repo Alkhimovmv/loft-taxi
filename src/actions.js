@@ -9,4 +9,5 @@ export const logOut = () => ({type: LOG_OUT})
 export const authenticate = (email, password) => ({type: AUTHENTICATE, payload: {email, password}})
 
 export const addCardAction = createAction('ADD_CARD')
+export const addCardSuccess = createAction('SUCCESS')
 export const failureAction = createAction('FAILURE')

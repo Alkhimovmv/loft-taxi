@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { authenticate } from './actions';
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import { Typography } from "@material-ui/core";
+import { Logo } from 'loft-taxi-mui-theme';
+
 
 export class Login extends Component {
   authenticate = (e) => {
@@ -16,22 +19,26 @@ export class Login extends Component {
     return (
       <>
         {this.props.isLoggedIn ? (
-          <p>
+          <Typography variant="h4" color="inherit">
             Вы вошли в систему
-            <Link to="/profile">Войти в профиль</Link>
-          </p>
+            <Link to="/profile">
+              <Button variant="contained" color="primary">Войти в профиль</Button>
+            </Link>
+          </Typography>
         ) : (
-          <div>
-            <form onSubmit={this.authenticate}>
-              <div>Войти</div>
-              <label className="label_hidden" htmlFor="email">Email</label>
+          <div className="login">
+            <Logo/>
+            <form className="login__form" onSubmit={this.authenticate}>
+              <Typography variant="h4">Войти</Typography>
+              <Typography variant="body1">
+                Новый пользователь?
+                <Link to="/signup">Зарегистрируйтесь</Link>
+              </Typography>
+              <label htmlFor="email">Имя пользователя *</label>
               <input id="email" type="email" name="email" size="28" />
-              <label className="label_hidden" htmlFor="password">Пароль</label>
+              <label htmlFor="password">Пароль *</label>
               <input id="password" type="password" name="password" size="28" />
-              <div>Забыли пароль?</div>
               <Button type="submit" variant="contained" color="primary">Войти</Button>
-              <div>Новый пользователь?</div>
-              <Link to="/signup">Регистрация</Link>
             </form>
           </div>
           

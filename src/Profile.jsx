@@ -21,8 +21,8 @@ const Profile = (props) => {
   return (
     <div >
       <Paper >
-        <Typography >Профиль</Typography>
-        <Typography >
+        <Typography variant="h4" color="inherit">Профиль</Typography>
+        <Typography>
           Способ оплаты
         </Typography>
         {props.cardIsExist ? (

@@ -10,32 +10,43 @@ import "./App.css";
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { theme } from 'loft-taxi-mui-theme';
 import { connect } from "react-redux";
-import { Link, Switch, Route, MemoryRouter } from "react-router-dom";
+import { Link, Switch, Route, BrowserRouter } from "react-router-dom";
 import { Logo } from 'loft-taxi-mui-theme';
+import AppBar from '@material-ui/core/AppBar';
+import { withStyles } from '@material-ui/core';
+import Button from "@material-ui/core/Button";
+import Toolbar from "@material-ui/core/Toolbar";
+
+const styles = theme => ({
+  
+  
+})
 
 class App extends React.Component {
+  
   render() {
+    const { appBar } = this.props.classes;
     return (
-      <MemoryRouter>
-        <header className="header">
+      <BrowserRouter>
+        <AppBar className="appBar" position="static">
           <Logo/>
-          <nav className="menu">
-            <ul className="menu__list">
-              <li className="menu__item">
-                <Link to="/map" className="menu__link">Карта</Link>
-              </li>
-              <li className="menu__item">
-                <Link to="/profile" className="menu__link">Профиль</Link>
-              </li>
-              <li className="menu__item menu__item--active">
-                <Link to="/" className="menu__link">Войти</Link>
-              </li>
-            </ul>
-          </nav>
-        </header>
+          <Toolbar>
+            <Link to="/map">
+              <Button>Карта</Button>
+            </Link>
+            <Link to="/profile">
+              <Button>Профиль</Button>
+            </Link>
+            <Link to="/">
+              <Button>Войти</Button>
+            </Link>
+          </Toolbar>
+        </AppBar>
+          
+        
         <MuiThemeProvider theme={theme}>
-          <main>
-            <section>
+          <main className="background__image">
+            <section > 
               <Switch>
                 <Route exact path="/" component={LoginWithAuth} />
                 <Route exact path="/signup" component={Signup} />
@@ -45,7 +56,8 @@ class App extends React.Component {
             </section>
           </main>
         </MuiThemeProvider>
-      </MemoryRouter>
+      </BrowserRouter>
+      
     );
   }
 }
@@ -56,4 +68,4 @@ App.propTypes = {
 
 export default connect(
   state => ({isLoggedIn: state.auth.isLoggedIn})
-)(App);
+)(withStyles(styles)(App));

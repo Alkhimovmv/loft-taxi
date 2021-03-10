@@ -22,7 +22,7 @@ const th = createMuiTheme({
   },
   palette: {
     primary: {
-      main: "#FDBF5A"
+      main: "#FFFFFF"
     },
     secondary: {
       main: "#ff0000"
@@ -70,7 +70,19 @@ const th = createMuiTheme({
           boxShadow: "0 0 0 0.2rem rgba(0,123,255,.5)"
         }
       }
-    }
+    },
+    MuiButtonBase: {
+      root: {
+        display: "inline-block"
+      }
+    },
+    MuiAppBar: {
+      root: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        paddingLeft: "27px",
+      }
+    },
   }
 });
 

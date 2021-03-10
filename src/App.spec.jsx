@@ -19,11 +19,13 @@ describe("App", () => {
 
     const history = createMemoryHistory();
     const { container } = render(
+      <MemoryRouter>
         <Router history={history}>
           <Provider store={mockStore}>
             <App />
           </Provider>
         </Router>
+      </MemoryRouter>
     );
     expect(container.innerHTML).toMatch("Login content");
   });
@@ -50,11 +52,13 @@ describe("App", () => {
     it("open map page", () => {
       const history = createMemoryHistory();
       const { container, getByText } = render(
-        <Router history={history}>
-          <Provider store={mockStore}>
-            <App />
-          </Provider>
-        </Router>
+        <MemoryRouter>
+          <Router history={history}>
+            <Provider store={mockStore}>
+              <App />
+            </Provider>
+          </Router>
+        </MemoryRouter>
       );
       fireEvent.click(getByText('Карта'));
       expect(container.innerHTML).toMatch("Map content");
@@ -63,12 +67,14 @@ describe("App", () => {
     it("open profile page", () => {
       const history = createMemoryHistory();
       const { container, getByText } = render(
-        <Router history={history}>
-          <Provider store={mockStore}>
-            <App />
-          </Provider>
-        </Router>
-        );
+        <MemoryRouter>
+          <Router history={history}>
+            <Provider store={mockStore}>
+              <App />
+            </Provider>
+          </Router>
+        </MemoryRouter>
+      );
       fireEvent.click(getByText('Профиль'));
       expect(container.innerHTML).toMatch("Profile content");
     });
