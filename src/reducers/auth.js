@@ -7,10 +7,10 @@ const initialState = {
 export default function auth(state = initialState, action) { 
     switch(action.type) {
         case LOG_IN: {
-            return {isLoggedIn: true}
+            return { isLoggedIn: true, token: action.payload }
         }
         case LOG_OUT: {
-            return {isLoggedIn: false}
+            return { isLoggedIn: false }
         }
         default:
             return state

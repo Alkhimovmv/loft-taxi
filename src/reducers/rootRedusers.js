@@ -6,8 +6,7 @@ export const INIT_STATE = {
     number: '',
     name: '',
     date: '',
-    cvc: '',
-    token
+    cvc: ''
   },
   cardIsExist: false,
   error: false,
