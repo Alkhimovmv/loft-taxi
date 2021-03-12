@@ -51,7 +51,7 @@ Profile.defaultProps = {
 };
 
 const mapStateToProps = (state) => ({
-  cardIsExist: state.cardIsExist,
+  cardIsExist: state.card.cardIsExist,
 });
 
 const mapDispathToProps = (dispatch) => ({

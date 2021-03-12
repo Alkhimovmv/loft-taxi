@@ -8,6 +8,7 @@ import { Typography } from "@material-ui/core";
 import { Logo } from 'loft-taxi-mui-theme';
 
 
+
 export class Login extends Component {
   authenticate = (e) => {
     e.preventDefault();
@@ -27,7 +28,9 @@ export class Login extends Component {
           </Typography>
         ) : (
           <div className="login">
-            <Logo/>
+            <div className="login_logo">
+              <Logo />
+            </div>
             <form className="login__form" onSubmit={this.authenticate}>
               <Typography variant="h4">Войти</Typography>
               <Typography variant="body1">

@@ -1,4 +1,4 @@
-import { failureAction, addCardAction, addCardSuccess } from './actions.js';
+import { failureAction, addCardAction, addCardSuccess } from '../actions';
 
 export const INIT_STATE = {
   authed: !!localStorage.getItem('user'),
@@ -13,7 +13,6 @@ export const INIT_STATE = {
 };
 
 export const rootReducer = (state = INIT_STATE, action) => {
-  const { auth: { token } } = store.getState();
   switch (action.type) {
     case addCardAction.toString():
       return { ...state,
@@ -21,8 +20,7 @@ export const rootReducer = (state = INIT_STATE, action) => {
           number: action.payload.number,
           name: action.payload.name,
           date: action.payload.date,
-          cvc: action.payload.cvc,
-          token
+          cvc: action.payload.cvc
         },
       };
     case addCardSuccess.toString():
