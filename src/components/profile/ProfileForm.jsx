@@ -40,7 +40,7 @@ const ProfileForm = React.memo(props => {
 	useEffect(() => {	
 		fetchCardRequest();
 	}, []);
-
+	
 	useEffect(() => {
 		setValue("cardNumber", savedCard.cardNumber);
 		setValue("expiryDate", savedCard.expiryDate);

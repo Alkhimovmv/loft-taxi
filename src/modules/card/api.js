@@ -1,17 +1,25 @@
-export const postCardRequest = async (action) => {
+import axios from "axios";
+
+export const postCardRequest = (action) => {
 	const token = window.localStorage.getItem("token");
-	return fetch(`https://loft-taxi.glitch.me/card`, {
-		method: "POST", 
-		headers: {"Content-Type": "application/json"}, 
-		body: JSON.stringify({ ...action.payload, token }) })
-		.then(response => response.json());
+	return axios
+		.post(`https://loft-taxi.glitch.me/card`, { ...action.payload, token })
+		.then(response => {
+			if (!response.data.success) {
+				throw Error(response.data.error);
+			}
+			return response.data;
+		});
 };
 
-export const getCardRequest = async () => {
+export const getCardRequest = () => {
 	const token = window.localStorage.getItem("token");
-	return fetch(`https://loft-taxi.glitch.me/card?token=${token}`, {
-		method: "POST", 
-		headers: {"Content-Type": "application/json"}, 
-		body: JSON.stringify({ token }) })
-		.then(response => response.json());
+	return axios
+		.get(`https://loft-taxi.glitch.me/card?token=${token}`)
+		.then(response => {
+			if (response.data.hasOwnProperty("error")) {
+				throw Error(response.data.error);
+			}
+			return response.data;
+		});
 };
