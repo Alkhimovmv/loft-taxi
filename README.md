@@ -1,7 +1,5 @@
 # Финальный проект - Клиент приложения для заказа такси
 
-![taxi app](/taxi-app.png)
-
 ## Работа с сервером
 
 Для получения данных о маршруте и списка доступных адресов я испоьзую [сервер](https://loft-taxi.glitch.me/).
@@ -63,12 +61,12 @@
 
 ### Склонируйте репозиторий и перейдите в папку проекта
 
-git clone https://github.com/AnastasiaKonovalova/Loft-taxi
+git clone https://github.com/Alkhimovmv/loft-taxi
 
 ### Установите модули локально
 
-npm install | yarn install
+npm install
 
 ### Запустите сборку проекта. По умолчанию проект откроется на http://localhost:3000/
 
-npm start | yarn start
+npm start
