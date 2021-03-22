@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-
 import { makeStyles } from "@material-ui/core/styles";
 import { Container, Paper, Box, Typography, Button } from "@material-ui/core/";
-
 import OrderForm from "./OrderForm";
 import { NavLink } from "../shared/NavLink";
 import { fetchCardRequest, getPaymentMethodSaved } from "../../modules/card";
@@ -37,7 +35,7 @@ const Order = React.memo(props => {
 		if (!paymentMethodSaved) {
 			fetchCardRequest();
 		}
-	}, []);
+	});
 
 	const onNewOrderClick = () => {
 		resetRoute();

@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const postAuthRequest = (payload) => {
 	return axios
-		.post(`https://loft-taxi.glitch.me/auth`, payload)
+		.post(`/auth`, payload)
 		.then(response => {
 			if (!response.data.success) {
 				throw Error(response.data.error);
@@ -10,9 +10,10 @@ export const postAuthRequest = (payload) => {
 			return response.data;
 		});
 };
+
 export const postRegisterRequest = (payload) => {
 	return axios
-		.post(`https://loft-taxi.glitch.me/register`, payload)
+		.post(`/register`, payload)
 		.then(response => {
 			if (!response.data.success) {
 				throw Error(response.data.error);

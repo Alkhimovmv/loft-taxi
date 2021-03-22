@@ -2,12 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
-
 import { Logo } from "loft-taxi-mui-theme";
 import { makeStyles } from "@material-ui/core/styles";
 import { AppBar, Toolbar, Typography, Button } from "@material-ui/core/";
-
-import { logout } from "../../modules/auth";
+import { logout } from "../../modules/authAndRegister";
 import { NavLink } from "./NavLink";
 
 const useStyles = makeStyles(() => ({
@@ -37,15 +35,9 @@ const Header = React.memo(props => {
 				<Typography variant="h6" className={classes.title}>
 					<Logo />
 				</Typography>
-				<Button component={NavLink} to="/map" color="inherit">
-					Карта
-				</Button>
-				<Button component={NavLink} to="/profile" color="inherit">
-					Профиль
-				</Button>
-				<Button onClick={onLogoutButtonClick} color="inherit">
-					Выйти
-				</Button>
+				<Button component={NavLink} to="/map" color="inherit">Карта</Button>
+				<Button component={NavLink} to="/profile" color="inherit">Профиль</Button>
+				<Button onClick={onLogoutButtonClick} color="inherit">Выйти</Button>
 			</Toolbar>
 		</AppBar>
 	);

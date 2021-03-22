@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
-import auth from "./auth";
+import auth from "./authAndRegister";
 import card from "./card";
-import address from "./address";
+import address from "./addressList";
 import route from "./route";
-import { logout } from "./auth/actions";
+import { logout } from "./authAndRegister/actions";
 
 const rootReducer = combineReducers({
 	auth,

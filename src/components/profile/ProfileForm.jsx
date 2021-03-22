@@ -24,7 +24,7 @@ export const useStyles = makeStyles(() => ({
 	},
 	card: {
 		boxSizing: "border-box",
-		height: "189px",
+		minHeight: "189px",
 		width: "300px",
 		padding: "20px 30px 30px",
 		position: "relative"
@@ -34,7 +34,7 @@ export const useStyles = makeStyles(() => ({
 const ProfileForm = React.memo(props => {
 	const { sendCardRequest, savedCard, fetchCardRequest, setSuccessMessageIsShown, successMessageIsShown } = props;
 	const classes = useStyles();
-
+	
 	const { handleSubmit, register, setValue, errors } = useForm();
 
 	useEffect(() => {	
@@ -42,10 +42,15 @@ const ProfileForm = React.memo(props => {
 	}, []);
 	
 	useEffect(() => {
-		setValue("cardNumber", savedCard.cardNumber);
-		setValue("expiryDate", savedCard.expiryDate);
-		setValue("cardName", savedCard.cardName);
-		setValue("cvc", savedCard.cvc);
+		if(savedCard) {
+			setValue("cardNumber", savedCard.cardNumber);
+			setValue("expiryDate", savedCard.expiryDate);
+			setValue("cardName", savedCard.cardName);
+			setValue("cvc", savedCard.cvc);
+		} else {
+			setValue("expiryDate", "");
+		}
+		
 	}, [savedCard]);
 
 	useEffect(() => {
@@ -82,7 +87,8 @@ const ProfileForm = React.memo(props => {
 						}
 						rules={{
 							minLength: 16,
-							maxLength: 16
+							maxLength: 16,
+							pattern: /[0-9]/
 						}}
 						InputLabelProps={{ shrink: true }}
 						margin="normal"
@@ -97,6 +103,14 @@ const ProfileForm = React.memo(props => {
 						register={register}
 						setValue={setValue}
 						InputLabelProps={{ shrink: true }}
+						helperText={
+							errors.expiryDate && "Дата должна быть формата 01/21"
+						}
+						rules={{
+							pattern: /[//]/,
+							minLength: 5,
+							maxLength: 5,
+						}}
 						views={["year", "month"]}
 						format="MM/YY"
 						disablePast
@@ -132,11 +146,11 @@ const ProfileForm = React.memo(props => {
 						name="cvc"
 						register={register}
 						setValue={setValue}
-
 						helperText={errors.cvc && "CVC должен сожержать 3 символа"}
 						rules={{
 							minLength: 3,
-							maxLength: 3
+							maxLength: 3,
+							pattern: /[0-9]/
 						}}
 						InputLabelProps={{ shrink: true }}
 						margin="normal"

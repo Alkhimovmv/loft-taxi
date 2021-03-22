@@ -2,11 +2,9 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { useForm } from "react-hook-form";
-
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, MenuItem, Select, Button, FormControl, InputLabel } from "@material-ui/core";
-
-import { fetchAddressRequest, getAddressList } from "../../modules/address";
+import { fetchAddressRequest, getAddressList } from "../../modules/addressList";
 import { fetchRouteRequest } from "../../modules/route";
 
 const useStyles = makeStyles(() => ({
@@ -19,7 +17,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const OrderForm = React.memo(props => {
-	const { handleSubmit, register, setValue, getValues, watch, errors } = useForm();
+	const { handleSubmit, register, setValue, getValues, watch } = useForm();
 	const { fetchAddressRequest, addressList, fetchRouteRequest } = props;
 	const classes = useStyles();
 
@@ -34,15 +32,17 @@ const OrderForm = React.memo(props => {
 	const watchFrom = watch("from");
 	const watchTo = watch("to");
 
+	const onChange = event => {
+		setValue(event.target.name, event.target.value);
+	};
+
 	const AddressSelect = props => {
 		const { addressKey, otherAddress } = props;
 
 		let availableAddresses = addressList
 			.filter(item => item !== otherAddress)
 			.map(addressItem => (
-				<MenuItem key={addressItem} value={addressItem}>
-					{addressItem}
-				</MenuItem>
+				<MenuItem key={addressItem} value={addressItem}> {addressItem} </MenuItem>
 			));
 
 		return (
@@ -59,10 +59,6 @@ const OrderForm = React.memo(props => {
 				</Select>
 			</>
 		);
-	};
-
-	const onChange = event => {
-		setValue(event.target.name, event.target.value);
 	};
 
 	const onSubmit = data => {

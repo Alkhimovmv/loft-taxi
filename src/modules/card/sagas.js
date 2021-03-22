@@ -1,6 +1,5 @@
 import { takeEvery, call, put, fork } from "redux-saga/effects";
 import * as api from "./api";
-
 import { sendCardRequest, sendCardSuccess, sendCardFailure, fetchCardRequest, fetchCardSuccess, fetchCardFailure } from "./actions";
 
 export function* sendCardRequestSaga(action) {

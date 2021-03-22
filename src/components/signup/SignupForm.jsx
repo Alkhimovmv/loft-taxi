@@ -7,7 +7,7 @@ import { RHFInput } from "react-hook-form-input";
 
 import { Paper, Container, Typography, Link, Grid, TextField, Box, Button } from "@material-ui/core/";
 
-import { getIsLoggedIn, getError, sendRegisterRequest } from "../../modules/auth";
+import { getIsLoggedIn, getError, sendRegisterRequest } from "../../modules/authAndRegister";
 import { NavLink } from "../shared/NavLink";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -107,7 +107,7 @@ const SignupForm = React.memo(props => {
 						</Grid>
 					</Grid>
 					<Box className={classes.buttonContainer}>
-						<Button type="submit" variant="contained" color="primary">Зарегистрироваться</Button>
+						<Button type="submit" variant="contained" color="primary" data-testid="buttonSignup">Зарегистрироваться</Button>
 					</Box>
 				</form>
 			</Container>

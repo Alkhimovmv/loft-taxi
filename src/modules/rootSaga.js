@@ -1,7 +1,7 @@
 import { fork } from "redux-saga/effects";
-import { authSaga, registerSaga } from "./auth/sagas";
+import { authSaga, registerSaga } from "./authAndRegister/sagas";
 import { paymentSaga } from "./card/sagas";
-import { addressSaga } from "./address/sagas";
+import { addressSaga } from "./addressList/sagas";
 import { routeSaga } from "./route/sagas";
 
 export function* rootSaga() {

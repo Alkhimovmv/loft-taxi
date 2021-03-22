@@ -1,7 +1,6 @@
 import React from "react";
 import mapboxgl from "mapbox-gl";
 import PropTypes from "prop-types";
-
 import { connect } from "react-redux";
 import { fetchRouteRequest, getRouteCoords } from "../../modules/route/";
 import { drawRoute } from "./drawRoute";
@@ -11,11 +10,7 @@ mapboxgl.accessToken = "pk.eyJ1IjoiYWxraGltb3ZtdiIsImEiOiJja2xtcWE2eDcwYnNkMm5uM
 class MapContainer extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			lng: 30.31413,
-			lat: 59.93863,
-			zoom: 10
-		};
+		
 		this.map = null;
 		this.mapContainerRef = React.createRef();
 	}
@@ -24,8 +19,8 @@ class MapContainer extends React.Component {
 		this.map = new mapboxgl.Map({
 			container: this.mapContainerRef.current,
 			style: "mapbox://styles/mapbox/streets-v9",
-			center: [this.state.lng, this.state.lat],
-			zoom: this.state.zoom
+			center: [30.31413, 59.93863],
+			zoom: 10
 		});
 	}
 
@@ -33,15 +28,23 @@ class MapContainer extends React.Component {
 		if (prevProps !== this.props) {
 			const { routeCoords } = this.props;
 
-			if (this.map.getLayer("route")) {
+			if (this.map && this.map.getLayer("route")) {
 				this.map.flyTo({
-					center: [this.state.lng, this.state.lat],
-					zoom: this.state.zoom
+					center: [30.31413, 59.93863],
+					zoom: 10
 				});
 				this.map.removeLayer("route");
+				this.map.removeLayer("start1");
+				this.map.removeLayer("start2");
+				this.map.removeLayer("start3");
+				this.map.removeLayer("end1");
+				this.map.removeLayer("end2");
+				this.map.removeLayer("end3");
 				this.map.removeSource("route");
+				this.map.removeSource("circle-start");
+				this.map.removeSource("circle-end");
 			}
-			if (routeCoords.length) {
+			if (this.map && routeCoords.length) {
 				drawRoute(this.map, routeCoords);
 			}
 		}
@@ -60,11 +63,7 @@ class MapContainer extends React.Component {
 
 		return (
 			<div style={{ position: "relative", zIndex: -10 }}>
-				<div
-					style={style}
-					ref={this.mapContainerRef}
-					className="mapContainer"
-				/>
+				<div style={style} ref={this.mapContainerRef} className="mapContainer" />
 			</div>
 		);
 	}

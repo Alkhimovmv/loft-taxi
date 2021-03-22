@@ -4,12 +4,9 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { RHFInput } from "react-hook-form-input";
-
 import { Container, Paper, Typography, Link, TextField, Box, Button } from "@material-ui/core";
-
-import { getIsLoggedIn, getError, sendAuthRequest } from "../../modules/auth";
+import { getIsLoggedIn, getError, sendAuthRequest } from "../../modules/authAndRegister";
 import { NavLink } from "../shared/NavLink";
-
 import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles(() => ({
