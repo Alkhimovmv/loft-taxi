@@ -1,6 +1,6 @@
 # Финальный проект - Клиент приложения для заказа такси
 
-![taxi app](![image](https://user-images.githubusercontent.com/61086417/112049709-08c2ba00-8b61-11eb-980d-797daae8f70e.png))
+![taxi app](/taxi-app.png)
 
 ## Работа с сервером
 
