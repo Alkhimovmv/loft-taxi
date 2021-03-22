@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# Финальный проект - Клиент приложения для заказа такси
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![taxi app](![image](https://user-images.githubusercontent.com/61086417/112049709-08c2ba00-8b61-11eb-980d-797daae8f70e.png))
 
-## Available Scripts
+## Работа с сервером
 
-In the project directory, you can run:
+Для получения данных о маршруте и списка доступных адресов я испоьзую [сервер](https://loft-taxi.glitch.me/).
 
-### `npm start`
+### Доступные запросы
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- `/auth` - позволяет авторизоваться (test@test.com / 123123)
+- `/register` - позволяет зарегистрироваться
+- `/route` - возвращает список точек для маршрута
+- `/addressList` - возвращает список доступных адресов
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Работа с картой
 
-### `npm test`
+Для работы с картой предлагается использовать сервис [mapbox](https://www.mapbox.com/). Он предоставляют библиотеку для Javascript, её довольно удобно использовать для отображения карты и маршрутов на ней.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[Документация для Jаvascript библиотеки](https://docs.mapbox.com/mapbox-gl-js/api/)
 
-### `npm run build`
+Для работы с картой вам потребуется зарегистрироваться на [mapbox](https://www.mapbox.com) и получить токен.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Работа со стилями
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Для реализации приложения я использовал библиотеку компонентов[Material UI](https://material-ui.com/).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Задачи
 
-### `npm run eject`
+Необходимо реализовать приложение со следующим функционалом:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Как пользователь:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  - Я могу авторизоваться в приложении
+  - При неверном логине или пароле я получу ошибку валидации
+  - При попытке перейти на любую страницу кроме `/login` я буду перенаправлен обратно на страницу `/login`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Как авторизованный пользователь:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  - Я имею доступ к странице с картой (`/map`)
+  - При незаполненных платёжных данных на странице карты я вижу сообщение о необходимости их заполнить и ссылку на профиль.
+  - Я имею доступ к странице профиля (`/profile`)
+  - На странице профиля (`/profile`) я могу указать данные банковской карты
+  - Я могу выйти из аккаунта нажав кнопку "Выйти".
 
-## Learn More
+- Как авторизованный пользователь с указанными платёжными данными:
+  - На странице с картой я могу выбрать адрес отправления и прибытия из списка доступных.
+  - При указанных адресах отправления и прибытия я могу нажать на кнопку "Вызвать такси".
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Технологии
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- create-react-app
+- React.js
+- react-router
+- Redux
+- redux-saga
+- Redux Form
+- Material UI
+- redux-actions
+- CSS-modules
+- Jest
+- Mapbox API
 
-### Code Splitting
+### Склонируйте репозиторий и перейдите в папку проекта
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+git clone https://github.com/AnastasiaKonovalova/Loft-taxi
 
-### Analyzing the Bundle Size
+### Установите модули локально
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+npm install | yarn install
 
-### Making a Progressive Web App
+### Запустите сборку проекта. По умолчанию проект откроется на http://localhost:3000/
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+npm start | yarn start
