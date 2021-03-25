@@ -53,6 +53,7 @@ const LoginForm = React.memo(props => {
 						register={register}
 						setValue={setValue}
 						control={control}
+						defaultValue={""}
 						inputProps={{ "data-testid": "inputName", type: "email" }}
 						margin="normal"
 						fullWidth
@@ -65,6 +66,7 @@ const LoginForm = React.memo(props => {
 						register={register}
 						setValue={setValue}
 						control={control}
+						defaultValue={""}
 						inputProps={{
 							"data-testid": "inputPassword",
 							type: "password",
