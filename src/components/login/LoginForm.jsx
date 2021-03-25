@@ -2,8 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { RHFInput } from "react-hook-form-input";
+import { useForm, Controller } from "react-hook-form";
 import { Container, Paper, Typography, Link, TextField, Box, Button } from "@material-ui/core";
 import { getIsLoggedIn, getError, sendAuthRequest } from "../../modules/authAndRegister";
 import { NavLink } from "../shared/NavLink";
@@ -25,7 +24,7 @@ export const useStyles = makeStyles(() => ({
 }));
 
 const LoginForm = React.memo(props => {
-	const { handleSubmit, register, setValue } = useForm();
+	const { handleSubmit, register, setValue, control } = useForm();
 	const classes = useStyles();
 	const { sendAuthRequest, isLoggedIn } = props;
 
@@ -47,23 +46,25 @@ const LoginForm = React.memo(props => {
 					</p>
 				</div>
 				<form onSubmit={handleSubmit(onSubmit)}>
-					<RHFInput
+					<Controller
 						as={<TextField />}
 						label="Имя пользователя"
 						name="email"
 						register={register}
 						setValue={setValue}
+						control={control}
 						inputProps={{ "data-testid": "inputName", type: "email" }}
 						margin="normal"
 						fullWidth
 						required
 					/>
-					<RHFInput
+					<Controller
 						as={<TextField />}
 						label="Пароль"
 						name="password"
 						register={register}
 						setValue={setValue}
+						control={control}
 						inputProps={{
 							"data-testid": "inputPassword",
 							type: "password",

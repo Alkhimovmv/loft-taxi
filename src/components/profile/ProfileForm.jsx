@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { useForm } from "react-hook-form";
-import { RHFInput } from "react-hook-form-input";
+import { useForm, Controller } from "react-hook-form";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Typography, Paper, TextField, Button } from "@material-ui/core/";
@@ -35,23 +34,11 @@ const ProfileForm = React.memo(props => {
 	const { sendCardRequest, savedCard, fetchCardRequest, setSuccessMessageIsShown, successMessageIsShown } = props;
 	const classes = useStyles();
 	
-	const { handleSubmit, register, setValue, errors } = useForm();
+	const { handleSubmit, register, setValue, control, errors } = useForm();
 
 	useEffect(() => {	
 		fetchCardRequest();
 	}, []);
-	
-	useEffect(() => {
-		if(savedCard) {
-			setValue("cardNumber", savedCard.cardNumber);
-			setValue("expiryDate", savedCard.expiryDate);
-			setValue("cardName", savedCard.cardName);
-			setValue("cvc", savedCard.cvc);
-		} else {
-			setValue("expiryDate", "");
-		}
-		
-	}, [savedCard]);
 
 	useEffect(() => {
 		return () => {
@@ -75,13 +62,15 @@ const ProfileForm = React.memo(props => {
 			<Box className={classes.cardsContainer}>
 				<Paper className={classes.card}>
 					<MCIcon />
-					<RHFInput
+					<Controller
 						as={<TextField />}
 						label="Номер карты:"
 						placeholder="0000 0000 0000 0000"
 						name="cardNumber"
 						register={register}
 						setValue={setValue}
+						control={control}
+						defaultValue={savedCard ? savedCard.cardNumber : ''}
 						helperText={
 							errors.cardNumber && "Номер карты должен сожержать 16 символов"
 						}
@@ -95,13 +84,15 @@ const ProfileForm = React.memo(props => {
 						fullWidth
 						required
 					/>
-					<RHFInput
+					<Controller
 						as={<TextField />}
 						label="Срок действия:"
 						placeholder="01/21"
 						name="expiryDate"
 						register={register}
 						setValue={setValue}
+						control={control}
+						defaultValue={savedCard ? savedCard.expiryDate : ''}
 						InputLabelProps={{ shrink: true }}
 						helperText={
 							errors.expiryDate && "Дата должна быть формата 01/21"
@@ -121,13 +112,15 @@ const ProfileForm = React.memo(props => {
 					/>
 				</Paper>
 				<Paper className={classes.card}>
-					<RHFInput
+					<Controller
 						as={<TextField />}
 						label="Имя владельца:"
 						placeholder="USER NAME"
 						name="cardName"
 						register={register}
 						setValue={setValue}
+						control={control}
+						defaultValue={savedCard ? savedCard.cardName : ''}
 						InputLabelProps={{ shrink: true }}
 						helperText={
 							errors.cardName && "Имя должно содержать только латинские символы"
@@ -139,13 +132,15 @@ const ProfileForm = React.memo(props => {
 						fullWidth
 						required
 					/>
-					<RHFInput
+					<Controller
 						as={<TextField />}
 						label="CVC"
 						placeholder="123"
 						name="cvc"
 						register={register}
 						setValue={setValue}
+						control={control}
+						defaultValue={savedCard ? savedCard.cvc : ''}
 						helperText={errors.cvc && "CVC должен сожержать 3 символа"}
 						rules={{
 							minLength: 3,
