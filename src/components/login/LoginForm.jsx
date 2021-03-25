@@ -24,7 +24,7 @@ export const useStyles = makeStyles(() => ({
 }));
 
 const LoginForm = React.memo(props => {
-	const { handleSubmit, register, setValue, control } = useForm();
+	const { handleSubmit, register, control } = useForm();
 	const classes = useStyles();
 	const { sendAuthRequest, isLoggedIn } = props;
 
@@ -51,7 +51,6 @@ const LoginForm = React.memo(props => {
 						label="Имя пользователя"
 						name="email"
 						register={register}
-						setValue={setValue}
 						control={control}
 						defaultValue={""}
 						inputProps={{ "data-testid": "inputName", type: "email" }}
@@ -64,7 +63,6 @@ const LoginForm = React.memo(props => {
 						label="Пароль"
 						name="password"
 						register={register}
-						setValue={setValue}
 						control={control}
 						defaultValue={""}
 						inputProps={{

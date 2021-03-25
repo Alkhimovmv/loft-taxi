@@ -2,8 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { RHFInput } from "react-hook-form-input";
+import { useForm, Controller } from "react-hook-form";
 
 import { Paper, Container, Typography, Link, Grid, TextField, Box, Button } from "@material-ui/core/";
 
@@ -30,7 +29,7 @@ export const useStyles = makeStyles(() => ({
 const SignupForm = React.memo(props => {
 	const { sendRegisterRequest, isLoggedIn } = props;
 	const classes = useStyles();
-	const { handleSubmit, register, setValue } = useForm();
+	const { handleSubmit, register, control } = useForm();
 
 	const onSubmit = data => {
 		sendRegisterRequest(data);
@@ -50,12 +49,13 @@ const SignupForm = React.memo(props => {
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<Grid container spacing={3}>
 						<Grid item xs={12}>
-							<RHFInput
+							<Controller
 								as={<TextField />}
 								label="Адрес электронной почты"
 								name="email"
 								register={register}
-								setValue={setValue}
+								control={control}
+								defaultValue={""}
 								inputProps={{ "data-testid": "inputEmail", type: "email" }}
 								margin="normal"
 								fullWidth
@@ -63,12 +63,13 @@ const SignupForm = React.memo(props => {
 							/>
 						</Grid>
 						<Grid item xs={6}>
-							<RHFInput
+							<Controller
 								as={<TextField />}
 								label="Имя"
 								name="name"
 								register={register}
-								setValue={setValue}
+								control={control}
+								defaultValue={""}
 								inputProps={{ "data-testid": "inputName", type: "text" }}
 								margin="normal"
 								fullWidth
@@ -76,12 +77,13 @@ const SignupForm = React.memo(props => {
 							/>
 						</Grid>
 						<Grid item xs={6}>
-							<RHFInput
+							<Controller
 								as={<TextField />}
 								label="Фамилия"
 								name="surname"
 								register={register}
-								setValue={setValue}
+								control={control}
+								defaultValue={""}
 								inputProps={{ "data-testid": "inputSurname", type: "text" }}
 								margin="normal"
 								fullWidth
@@ -89,12 +91,13 @@ const SignupForm = React.memo(props => {
 							/>
 						</Grid>
 						<Grid item xs={12}>
-							<RHFInput
+							<Controller
 								as={<TextField />}
 								label="Пароль"
 								name="password"
 								register={register}
-								setValue={setValue}
+								control={control}
+								defaultValue={""}
 								inputProps={{
 									"data-testid": "inputPassword",
 									type: "password",
